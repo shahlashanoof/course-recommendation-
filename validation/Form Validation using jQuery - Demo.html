@@ -1,0 +1,149 @@
+
+
+
+
+  <script type="text/javascript" src="Form%20Validation%20using%20jQuery%20-%20Demo_files/jquery_002.js"></script>
+  <script type="text/javascript" src="Form%20Validation%20using%20jQuery%20-%20Demo_files/jquery.js"></script>
+
+  <script type="text/javascript">
+		SubmittingForm=function() {
+			alert("The form has been validated.");
+		}
+
+		$(document).ready(function() {
+			$("#fvujq-form1").validate({
+				submitHandler:function(form) {
+					SubmittingForm();
+				},
+				rules: {
+					name: "required",		// simple rule, converted to {required:true}
+					email: {				// compound rule
+						required: true,
+						email: true
+					},
+					url: {
+						url: true
+					},
+					comment: {
+						required: true
+					}
+				},
+				messages: {
+					comment: "Please enter a comment."
+				}
+			});
+		});
+
+		jQuery.validator.addMethod(
+			"selectNone",
+			function(value, element) {
+				if (element.value == "none")
+				{
+					return false;
+				}
+				else return true;
+			},
+			"Please select an option."
+		);
+
+		$(document).ready(function() {
+			$("#fvujq-form2").validate({
+				submitHandler:function(form) {
+					SubmittingForm();
+				},
+				rules: {
+					sport: {
+						selectNone: true
+					}
+				}
+			});
+		});
+	</script>
+
+	<style type="text/css">
+.form-div {
+  border: 1px #ccc solid;
+  padding: 10px;
+  width: 650px;
+}
+
+.form-div .submit {
+  margin-left: 155px;
+  margin-top: 10px;
+}
+
+.form-div .label {
+  display: block;
+  float: left;
+  width: 150px;
+  text-align: right;
+  margin-right: 5px;
+}
+
+.form-div .form-row {
+  padding: 5px 0;
+  clear: both;
+  width: 700px;
+}
+
+.form-div label.error {
+  width: 250px;
+  display: block;
+  float: left;
+  color: red;
+  padding-left: 10px;
+}
+
+.form-div input[type=text], select, textarea {
+  width: 250px;
+  float: left;
+}
+
+.form-div textarea {
+  height: 50px;
+}
+	</style>
+
+
+
+
+</head>
+
+
+<!-- comment -->
+
+
+
+
+<body>
+
+<div class="form-div">
+ 	<form id="fvujq-form1" method="post" action="">
+  		<div class="form-row">
+      <span class="label">Name *</span>
+      <input class="error" name="name" type="text"><label class="error" generated="true" for="name"></label>
+  		</div>
+  		<div class="form-row">
+      <span class="label">E-Mail *</span>
+      <input class="error" name="email" type="text"><label class="error" generated="true" for="email"></label>
+  		</div>
+  		<div class="form-row">
+      <span class="label">URL&nbsp;&nbsp;&nbsp;</span>
+      <input class="" name="url" type="text">
+  		</div>
+  		<div class="form-row">
+      <span class="label">Your comment *</span>
+      <textarea class="error" name="comment"></textarea><label class="error" generated="true" for="comment"></label>
+  		</div>
+  		<div class="form-row">
+      <input class="submit" value="Submit" type="submit">
+  		</div>
+ 	</form>
+</div>
+
+
+
+
+  
+
+</body></html>
